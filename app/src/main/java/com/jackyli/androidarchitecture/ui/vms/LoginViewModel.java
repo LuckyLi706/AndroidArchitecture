@@ -19,8 +19,7 @@ import retrofit2.Response;
 public class LoginViewModel extends ViewModel {
 
     public MutableLiveData<Boolean> mLDLogin;
-    public MutableLiveData<Boolean> mLDLoading = new MutableLiveData<>();
-    private LiveData<List<UserInfo>> listLiveData = new MutableLiveData<>();
+    private final LiveData<List<UserInfo>> listLiveData = new MutableLiveData<>();
 
     public MutableLiveData<Boolean> getLoginResult() {
         if (mLDLogin == null) {
@@ -36,7 +35,17 @@ public class LoginViewModel extends ViewModel {
             public void onResponse(Call<Result> call, Response<Result> response) {
                 Result result = response.body();
                 assert result != null;
-                mLDLogin.postValue(result.getResult().equals("Success"));
+                if (result.getResult().equals("Success")) {
+                    mLDLogin.postValue(true);
+                    UserInfo userInfo = new UserInfo();
+                    userInfo.setUserName(name);
+                    userInfo.setPassWord(pass);
+                    if (listLiveData.getValue() != null && listLiveData.getValue().size() > 0) {
+                        insertDb(userInfo);
+                    }
+                } else {
+                    mLDLogin.postValue(false);
+                }
             }
 
             @Override
@@ -47,7 +56,11 @@ public class LoginViewModel extends ViewModel {
     }
 
     public LiveData<List<UserInfo>> getUser() {
-        LiveData<List<UserInfo>> userDao = AppDataBase.getInstance().getUserDao().getUsers();
-        return userDao;
+        return AppDataBase.getInstance().getUserDao().getUsers();
+    }
+
+    public void insertDb(UserInfo userInfo) {
+        //可以考虑使用线程池或者rxjava来做
+        new Thread(() -> AppDataBase.getInstance().getUserDao().addUser(userInfo)).start();
     }
 }
