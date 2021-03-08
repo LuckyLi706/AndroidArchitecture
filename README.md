@@ -1,6 +1,6 @@
 # AndroidArchitecture
 安卓架构（MVC、MVP、MVVM）
-## MVVM架构(Retrofit2+Room+DataBing+LiveData+ViewModel)
+## MVVM架构[Java版本] (Retrofit2+RxJava2+Room+DataBing+LiveData+ViewModel)
 
 ### 架构简介
 
@@ -15,6 +15,7 @@
 ### 开源库
 
 + [Retrofit2](https://github.com/square/retrofit)
++ [RxJava2](https://github.com/ReactiveX/RxJava)
 + [Room](https://developer.android.google.cn/jetpack/androidx/releases/room?hl=zh_cn)
 + [DataBinding](https://developer.android.google.cn/topic/libraries/data-binding)
 + [LiveData](https://developer.android.google.cn/topic/libraries/architecture/livedata)

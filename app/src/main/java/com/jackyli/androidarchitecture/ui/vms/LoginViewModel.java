@@ -1,8 +1,11 @@
 package com.jackyli.androidarchitecture.ui.vms;
 
+import android.annotation.SuppressLint;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
 
 import com.jackyli.androidarchitecture.api.ApiService;
 import com.jackyli.androidarchitecture.model.Result;
@@ -12,6 +15,9 @@ import com.jackyli.androidarchitecture.repository.net.RetrofitManager;
 
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -59,8 +65,13 @@ public class LoginViewModel extends ViewModel {
         return AppDataBase.getInstance().getUserDao().getUsers();
     }
 
+    @SuppressLint("CheckResult")
     public void insertDb(UserInfo userInfo) {
         //可以考虑使用线程池或者rxjava来做
-        new Thread(() -> AppDataBase.getInstance().getUserDao().addUser(userInfo)).start();
+        AppDataBase.getInstance().getUserDao().addUser(userInfo).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(integer -> {
+
+        }, throwable -> {
+
+        });
     }
 }

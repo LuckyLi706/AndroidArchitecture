@@ -9,6 +9,8 @@ import com.jackyli.androidarchitecture.model.UserInfo;
 
 import java.util.List;
 
+import io.reactivex.Maybe;
+
 @Dao
 public abstract class UserDao {
 
@@ -16,5 +18,5 @@ public abstract class UserDao {
     public abstract LiveData<List<UserInfo>> getUsers();
 
     @Insert
-    public abstract void addUser(UserInfo userInfo);
+    public abstract Maybe<Integer> addUser(UserInfo userInfo);
 }
