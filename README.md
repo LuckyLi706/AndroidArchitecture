@@ -1,6 +1,6 @@
 # AndroidArchitecture
 安卓架构（MVC、MVP、MVVM）
-## MVVM架构[Kotlin版本](Retrofit2+Room+DataBing+LiveData+ViewModel+协程)
+## MVVM架构[Kotlin版本] (Retrofit2+Room+DataBing+LiveData+ViewModel+协程)
 
 ### 架构简介
 
