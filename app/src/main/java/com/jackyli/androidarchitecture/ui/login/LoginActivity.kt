@@ -36,6 +36,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 Toast.makeText(MvvmApplication.getContext(), "登录失败", Toast.LENGTH_SHORT).show();
             }
         })
+
+        loginViewModel.getUserInfoFromDb().observe(this, Observer {
+            if (it != null && it.isNotEmpty()) {
+                val userInfo = it[0]
+                username.setText(userInfo.userName)
+                password.setText(userInfo.passWord)
+            }
+        })
     }
 
     fun click(v: View) {

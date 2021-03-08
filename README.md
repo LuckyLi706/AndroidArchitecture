@@ -1,6 +1,6 @@
 # AndroidArchitecture
 安卓架构（MVC、MVP、MVVM）
-## MVVM架构(Retrofit2+Room+DataBing+LiveData+ViewModel)
+## MVVM架构[Kotlin版本](Retrofit2+Room+DataBing+LiveData+ViewModel+协程)
 
 ### 架构简介
 
@@ -19,6 +19,7 @@
 + [DataBinding](https://developer.android.google.cn/topic/libraries/data-binding)
 + [LiveData](https://developer.android.google.cn/topic/libraries/architecture/livedata)
 + [ViewModel](https://developer.android.google.cn/topic/libraries/architecture/viewmodel)
++ [Kotlin协程](https://www.kotlincn.net/docs/reference/coroutines/coroutines-guide.html)
 
 ### 优势
 
